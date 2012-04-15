@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Websanova Selectors</title>
+
+	<script type="text/javascript" src="./inc/jquery.1.7.1.min.js"></script>
+	<script type="text/javascript" src="./wSelectors.js"></script>
+	
+	<style>
+		.function{font-weight:bold;font-size:20px;}
+		.sample{margin:5px 20px;}
+	</style>
+</head>
+<body>
+
+	<!-------------------------------------------->
+	<!-- loaded
+	<!-------------------------------------------->
+	<div class="function">:loaded</div>
+	<div class="sample">
+		<img src="./images/slide1.jpg"/>
+		<img src="./images/slide2.jpg"/>
+		<span id="loaded"></span>
+
+		<script type="text/javascript">
+			$('img').load(function(){ $(this).data('loaded', true); });
+			
+			$("#loaded").append($('img:loaded').size());
+		</script>
+	</div>
+
+	<!-------------------------------------------->
+	<!-- width
+	<!-------------------------------------------->
+	<div class="function">:width</div>
+	<div class="sample">
+		<span class="width">SMALL</span>
+		<span class="width">MEDIUMMEDIUM</span>
+		<span class="width">LARGELARGELARGELARGELARGE</span>
+		
+		<span id="width"></span>
+
+		<script type="text/javascript">
+			$("#width").append($('.width:width(>100)').size());
+		</script>
+	</div>
+
+	<!-------------------------------------------->
+	<!-- height
+	<!-------------------------------------------->
+	<div class="function">:height</div>
+	<div class="sample">
+		<span class="height">SMALL</span>
+		<span class="height">MEDIUM<br/>MEDIUM</span>
+		<span class="height">LARGE<br/>LARGE<br/>LARGE</span>
+		
+		<span id="height"></span>
+
+		<script type="text/javascript">
+			$("#height").append($('.height:height(>30)').size());
+		</script>
+	</div>
+
+    <!-------------------------------------------->
+    <!-- leftOf
+    <!-------------------------------------------->
+    <div class="function">:leftOf</div>
+    <div class="sample">
+        <span class="leftOf">here</span><br/>
+        <span class="leftOf" style="margin-left:-40px;">here</span><br/>
+        <span class="leftOf">here</span><br/>
+        
+        <span id="leftOf"></span>
+
+        <script type="text/javascript">
+            $("#leftOf").append($('.leftOf:leftOf(#leftOf)').size());
+        </script>
+    </div>
+
+	<!-------------------------------------------->
+	<!-- rightOf
+	<!-------------------------------------------->
+	<div class="function">:rightOf</div>
+	<div class="sample">
+		<span class="rightOf" style="margin-left:20px;">here</span><br/>
+		<span class="rightOf">here</span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rightOf">here</span><br/>
+		
+		<span id="rightOf"></span>
+
+		<script type="text/javascript">
+			$("#rightOf").append($('.rightOf:rightOf(#rightOf)').size());
+		</script>
+	</div>
+
+	<!-------------------------------------------->
+	<!-- external
+	<!-------------------------------------------->
+	<div class="function">:external</div>
+	<div class="sample">
+		<div id="external_links">
+			<a id="target0" href="http://www.google.com" ></a>
+			<a id="target0" href="http://local.plugins.websanova.com" ></a>
+			<a id="target0" href="" ></a>
+			<a id="target0" ></a>
+			<a id="target0" href="http://www.yahoo.com" ></a>
+		</div>
+		
+		<span id="external"></span>
+
+		<script type="text/javascript">
+			$("#external").append($("#external_links :external").size())
+		</script>
+	</div>
+
+	<!-------------------------------------------->
+	<!-- target
+	<!-------------------------------------------->
+	<div class="function">:target</div>
+	<div class="sample">
+		<div id="target_links">
+			<a id="target0" href="" ></a>
+			<a id="target1" href="" target="" ></a>
+			<a id="target2" href="" target="_self" ></a>
+			<a id="target3" href="" target="_blank" ></a>
+			<a id="target4" href="" target="_parent" ></a>
+			<a id="target5" href="" target="someframe" ></a>
+		</div>
+		
+		<span id="target"></span>
+
+		<script type="text/javascript">
+			$("#target").append($("#target_links :target(_self)").size() + ',')
+			$("#target").append($("#target_links :target(_parent)").size() + ',')
+			$("#target").append($("#target_links :target(someframe)").size() + ',')
+		</script>
+	</div>
+
+	<!-------------------------------------------->
+	<!-- inView
+	<!-------------------------------------------->
+	<div class="function">:inView</div>
+	<div class="sample">
+		<span id="inView">
+			<span id="sub0">0</span>
+			<span id="sub1">1</span>
+		</span>
+
+		<script type="text/javascript">
+			$(document).ready(function()
+			{
+				$("#inView").append($("#inView:inView").size());
+			});
+		</script>
+	</div>
+
+	<!-------------------------------------------->
+	<!-- largerThan
+	<!-------------------------------------------->
+	<div class="function">:largerThan</div>
+	<div class="sample">
+		<span id="lt_small">SMALL</span>
+		<span class="lt_large">LRG</span>
+		<span class="lt_large">LARGE</span>
+		<span class="lt_large">LARGER</span>
+
+		<span id="largerThan"></span>
+
+		<script type="text/javascript">
+		
+			$("#largerThan").append($(".lt_large:largerThan(#lt_small)").size());
+			
+		</script>
+	</div>
+
+	<!-------------------------------------------->
+	<!-- isBold
+	<!-------------------------------------------->
+	<div class="function">:isBold</div>
+	<div class="sample">
+		<span class="isBold">text</span>
+		<span class="isBold" style="font-weight:bold;">text</span>
+		<span class="isBold">text</span>
+
+		<span id="isBold"></span>
+
+		<script type="text/javascript">
+		
+			$("#isBold").append($(".isBold:isBold").size());
+			
+		</script>
+	</div>
+	<!-------------------------------------------->
+	<!-- color
+	<!-------------------------------------------->
+	<div class="function">:color</div>
+	<div class="sample">
+
+		<span class="color" style="color:red;">red</span>
+		<span class="color" style="color:#FF0000;">red</span>
+		<span class="color" style="color:rgb(255, 0, 0);">red</span>
+
+		<span id="color"></span>
+
+		<script type="text/javascript">
+
+			$("#color").append($(".color:color(rgb(255, 0, 0))").size());
+
+		</script>
+	</div>
+
+	<!-------------------------------------------->
+	<!-- hasId
+	<!-------------------------------------------->
+	<div class="function">:hasId</div>
+	<div class="sample">
+		<div id="hasId">
+			<div id="idHere">idHere</div>
+			<div>No Id</div>
+			<div id="anotherId">anotherId</div>
+		</div>
+
+		<div id="hasId_output"></div>
+
+		<script type="text/javascript">
+			$('#hasId :hasId').each(function(){ $("#hasId_output").append($(this).attr('id') + ',') });
+		</script>
+	</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
